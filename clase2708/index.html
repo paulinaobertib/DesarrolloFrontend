@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TP Oberti Busso Paulina y Vaccarini Maria Victoria</title>
+  <meta name="practico" content="Ejercicio practico clase 21/08" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    
+  <header>
+    <div class="topbar">
+      <div class="principalDiv">
+        <span class="logo" aria-hidden="true">👩‍💻</span>
+        <strong>Curriculum Vitae</strong>
+      </div>
+      <nav aria-label="Principal">
+        <ul>
+          <li><a href="#datos-personales">Datos personales</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="container" tabindex="-1">
+ 
+    <section id="datos-personales" class="perfil" aria-labelledby="titulo-perfil">
+      <h2 id="titulo-perfil">Datos personales</h2>
+      <div id="title" class="title">
+        <h1>Paulina Oberti Busso</h1>
+        <h3>Estudiante de Ingeniería en Sistemas · Desarrolladora Frontend en Polko</h3>
+        <p><strong>Ubicación:</strong> Córdoba, Argentina</p>
+        <p><strong>Email:</strong> <a href="mailto:paulinaobertibusso@gmail.com">paulinaobertibusso@gmail.com</a></p>
+        <p><strong>Teléfono:</strong> <a href="tel:+543513264538">+54 9 351 326 4538</a></p>
+        <p><strong>GitHub:</strong> <a href="https://github.com/paulinaobertib" target="_blank">paulinaobertib</a></p>
+        <div class="perfil-info">
+          <p>Apasionada por el desarrollo de software, con experiencia en Frontend utilizando <strong>React, Vite y CSS moderno</strong>. 
+            Actualmente trabajo en <strong>Polko</strong> desarrollando interfaces web responsives.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="proyectos" aria-labelledby="titulo-proyectos">
+      <h2 id="titulo-proyectos">Proyectos</h2>
+      <div id="experience" class="experience">
+        <div class="polko">
+          <h3>Polko - Desarrollo FrontEnd</h3>
+          <img src="img/polko.jpg" alt="Captura del proyecto Polko" />
+        </div>
+        <div class="tesis">
+          <h3>Tesis - Oberti Busso Servicios Inmobiliarios</h3>
+          <img src="img/tesis.jpg" alt="Imagen del proyecto de tesis de servicios inmobiliarios" />
+        </div>
+        <div class="computacion">
+          <h3>Trabajo Computación Gráfica</h3>
+          <img src="img/computacion.jpg" alt="Imagen del proyecto de tesis de servicios inmobiliarios" />
+        </div>
+        <div class="start">
+          <h3>Start UCC</h3>
+          <img src="img/start.jpg" alt="Imagen del proyecto de tesis de servicios inmobiliarios" />
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="contactForm" aria-labelledby="titulo-contacto">
+      <h2 id="titulo-contacto">Formulario de contacto</h2>
+      <form id="formContacto" action="form" method="post">
+        <label for="name">Nombre</label>
+        <input type="text" id="name" name="name" placeholder="Tu nombre" required minlength="3" maxlength="60" pattern="[A-Za-zÀ-ÿ\s]+" title="Solo letras y espacios, mínimo 3 caracteres."/>
+
+        <label for="email">Email</label>
+        <input type="email" id="email"  name="email" placeholder="tu@email.com" required inputmode="email"/>
+
+        <label for="subject">Motivo</label>
+        <select id="subject" name="subject" required>
+          <option value="">-- Selecciona un motivo --</option>
+          <option value="consulta">Consulta</option>
+          <option value="soporte">Soporte</option>
+          <option value="presupuesto">Presupuesto</option>
+        </select>
+
+        <label for="message">Mensaje</label>
+        <textarea id="message" name="message" rows="3" placeholder="Escribe tu mensaje aquí..." required minlength="10" maxlength="1000"></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Paulina Oberti Busso - Maria Victoria Vaccarini.</p>
+      <p>
+        <a href="#datos-personales">Datos personales</a> ·
+        <a href="#proyectos">Proyectos</a> ·
+        <a href="#contacto">Contacto</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
