@@ -13,5 +13,8 @@ Este repositorio contiene los prácticos de la materia. Cada rama corresponde a 
 Se desarrolló un **Currículum Vitae** con:
 - `index.html` y `styles.css`.  
 - Tiene secciones como header con navbar, sección de datos personales, proyectos, formulario de contacto y footer.  
-- Usamos HTML, CSS, diseño responsive y validaciones en formularios.  
+- Usamos HTML, CSS, diseño responsive y validaciones en formularios.
 
+### Clase 03/09
+Comenzamos a usar Angular y pasamos lo realizado la clase anterior.
+- Formulario de contacto pasó a estar en una ruta aparte.
