@@ -1,0 +1,28 @@
+<section class="contactForm" aria-labelledby="titulo-contacto">
+  <h2 id="titulo-contacto">Formulario de contacto</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label for="name">Nombre</label>
+    <input id="name" type="text" formControlName="name" placeholder="Tu nombre" />
+    <small *ngIf="fieldInvalid('name')">Debe tener entre 3 y 60 letras.</small>
+
+    <label for="email">Email</label>
+    <input id="email" type="email" formControlName="email" placeholder="tu@email.com" />
+    <small *ngIf="fieldInvalid('email')">Email inválido.</small>
+
+    <label for="subject">Motivo</label>
+    <select id="subject" formControlName="subject">
+      <option value="">-- Selecciona un motivo --</option>
+      <option value="consulta">Consulta</option>
+      <option value="soporte">Soporte</option>
+      <option value="presupuesto">Presupuesto</option>
+    </select>
+    <small *ngIf="fieldInvalid('subject')">Seleccioná un motivo.</small>
+
+    <label for="message">Mensaje</label>
+    <textarea id="message" rows="3" formControlName="message" placeholder="Escribe tu mensaje aquí..."></textarea>
+    <small *ngIf="fieldInvalid('message')">Mínimo 10 caracteres.</small>
+
+    <button type="submit">Enviar</button>
+  </form>
+</section>

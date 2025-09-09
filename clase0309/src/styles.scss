@@ -1,0 +1,308 @@
+:root {
+    --color-primary: #0056b3;        
+    --color-primary-600: #004a99;    
+    --color-primary-800: #003d80;   
+    --color-bg: #f1f5fb;             
+    --color-surface: #ffffff;        
+    --color-text: #1f2937;  
+    --color-text-h: #63748e;    
+    --color-text-inv: #ffffff;       
+    --shadow-1: 0 2px 8px rgba(0,0,0,.08);
+    --radius: 12px;
+    --container: 1100px;
+
+    --space-1: .5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
+
+    --fs-h1: clamp(1.6rem, 1rem + 2vw, 2.4rem);
+    --fs-h2: clamp(1.3rem, .9rem + 1.4vw, 1.8rem);
+    --fs-h3: clamp(1.06rem, .95rem + .6vw, 1.22rem);
+}
+
+
+* { 
+    box-sizing: border-box; 
+}
+
+html, body { 
+    margin: 0; 
+    padding: 0; 
+}
+
+img { 
+    max-width: 100%; 
+    display: block; 
+}
+
+a { 
+    color: inherit; 
+}
+
+body {
+    font-family: Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans";
+    color: var(--color-text);
+    background: var(--color-bg);
+    line-height: 1.6;
+}
+
+h1 { 
+    font-size: var(--fs-h1); 
+    margin: .4rem 0; 
+}
+
+h2 { 
+    font-size: var(--fs-h2); 
+    color: var(--color-text-h);
+    margin: 0 0 1rem; 
+}
+
+h3 { 
+    font-size: var(--fs-h3); 
+    margin: .2rem 0; 
+}
+
+header {
+    background: var(--color-primary-800);
+    color: var(--color-text-inv);
+    padding: var(--space-2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    margin-bottom: var(--space-4);
+}
+
+.container {
+    text-align: center;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--space-1);
+}
+
+.topbar {
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-1);
+}
+
+.principalDiv {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-weight: 700;
+}
+
+.principalDiv .logo { 
+    font-size: 1.5rem; 
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--color-text-inv);
+    text-decoration: none;
+    padding: .45rem .6rem;
+    border-radius: 8px;
+}
+
+nav a:hover { 
+    background: rgba(255,255,255,.12); 
+}
+
+nav a:active { 
+    transform: translateY(1px); 
+}
+
+main { 
+    padding: var(--space-4); 
+}
+
+.perfil,.experience div, .contactForm {
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-1);
+}
+
+.perfil {
+    padding: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.perfil-info {
+    max-width: 700px;          
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: center;   
+    color: var(--color-text);
+    margin-top: 32px;
+    display: flex;
+    justify-self: center;
+}
+
+.title p { 
+    margin: 12px; 
+}
+
+.title a { 
+    color: var(--color-primary); 
+    text-decoration: none; 
+}
+
+.title a:hover { 
+    text-decoration: underline; 
+}
+
+#proyectos { 
+    margin: var(--space-4) 0; 
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-1);
+    padding: 16px;
+}
+
+.experience {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+}
+
+.experience div {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    padding: 0; 
+}
+
+.experience img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    filter: saturate(1.03) contrast(1.03);
+}
+
+.experience div:hover img { 
+    transform: scale(1.04); 
+}
+
+.experience h3 {
+    position: absolute;
+    inset: auto 0 0 0;
+    margin: 0;
+    padding: .85rem 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,.8), rgba(0,0,0,0) 100%);
+    color: var(--color-text-inv);
+    z-index: 1;
+    text-shadow: 0 1px 2px rgba(0,0,0,.5);
+}
+
+.experience .polko, .experience .tesis, .experience .computacion, .experience .start {
+    background: var(--color-surface);
+}
+
+.contactForm {
+    padding-top: 12px;
+    padding-bottom: 8px;
+}
+
+.contactForm label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 600;
+}
+
+.contactForm input, .contactForm select, .contactForm textarea {
+    width: 75%;
+    margin-top: .35rem;
+    padding: .65rem .75rem;
+    border: 1px solid #d0d7e2;
+    border-radius: 10px;
+    outline: none;
+    background: #fff;
+    font: inherit;
+}
+
+.contactForm textarea { 
+    resize: vertical; 
+    min-height: 110px; 
+}
+
+.contactForm button {
+    display: block;       
+    width: auto;         
+    margin: 1rem auto 2rem auto; 
+    padding: .9rem 1.25rem;
+    background: var(--color-primary);
+    color: var(--color-text-inv);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 2px 10px rgba(0,86,179,.22);
+}
+
+.contactForm button:hover { 
+    background: var(--color-primary-600); 
+}
+
+footer {
+    background: var(--color-primary-800);
+    color: var(--color-text-inv);
+    margin-top: var(--space-4);
+    padding: var(--space-3) 0;
+    text-align: center;
+}
+
+footer a { 
+    color: var(--color-text-inv); 
+    text-decoration: none; 
+}
+
+footer a:hover { 
+    text-decoration: underline; 
+}
+
+@media (max-width: 900px) {
+    .experience { 
+    grid-template-columns: 1fr; 
+    }
+
+    .experience img { 
+        height: 220px; 
+    }
+
+    nav ul { 
+        gap: .5rem; 
+    }
+}
+
+@media (max-width: 480px) {
+    header { 
+        padding: .8rem 0; 
+    }
+
+    .principalDiv .logo { 
+        font-size: 1.3rem; 
+    }
+
+    main { 
+        padding: var(--space-3); 
+    }
+
+    .experience img { 
+        height: 190px; 
+    }
+
+    .perfil, .contactForm { 
+        padding: var(--space-2); 
+    }
+}

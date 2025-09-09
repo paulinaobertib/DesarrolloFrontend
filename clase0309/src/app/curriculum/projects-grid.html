@@ -1,0 +1,6 @@
+<div class="experience">
+  <div *ngFor="let p of items" [class]="'card ' + p.cssClass">
+    <h3>{{ p.title }}</h3>
+    <img [src]="p.img" [alt]="'Imagen del proyecto ' + p.title" loading="lazy" />
+  </div>
+</div>

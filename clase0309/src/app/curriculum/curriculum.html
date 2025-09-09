@@ -1,0 +1,28 @@
+<section id="datos-personales" class="perfil" aria-labelledby="titulo-perfil">
+  <h2 id="titulo-perfil">Datos personales</h2>
+
+  <div id="title" class="title">
+    <h1>{{ person.name }}</h1>
+    <h3>{{ person.role }}</h3>
+
+    <p><strong>Ubicación: </strong> {{ person.location }}</p>
+    <p><strong>Email: </strong> <a [href]="'mailto:' + person.email">{{ person.email }}</a></p>
+    <p><strong>Teléfono: </strong> <a [href]="'tel:' + person.tel">{{ person.tel }}</a></p>
+    <p><strong>GitHub: </strong> <a href="https://github.com/{{ person.github }}" target="_blank">{{ person.github }}</a></p>
+
+    <div class="perfil-info">
+      <p>
+        Apasionada por el desarrollo de software, con experiencia en Frontend utilizando
+        <strong>React, Vite y CSS moderno</strong>. Actualmente trabajo en <strong>Polko</strong>
+        desarrollando interfaces web responsives.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="proyectos" aria-labelledby="titulo-proyectos">
+  <h2 id="titulo-proyectos">Proyectos</h2>
+
+  <!-- componente hijo -->
+  <app-projects-grid [items]="projects"></app-projects-grid>
+</section>

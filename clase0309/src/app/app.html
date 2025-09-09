@@ -1,0 +1,33 @@
+<header>
+  <div class="topbar">
+    <div class="principalDiv">
+      <span class="logo" aria-hidden="true">👩‍💻</span>
+      <strong>Curriculum Vitae</strong>
+    </div>
+
+    <nav aria-label="Principal">
+      <ul>
+        <!-- Enlaces con fragment a secciones del home -->
+        <li><a [routerLink]="['/']" fragment="datos-personales">Datos personales</a></li>
+        <li><a [routerLink]="['/']" fragment="proyectos">Proyectos</a></li>
+        <!-- Ruta aparte -->
+        <li><a routerLink="/contacto" routerLinkActive="active">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido" class="container" tabindex="-1">
+  <router-outlet></router-outlet>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2025 Paulina Oberti Busso - Maria Victoria Vaccarini.</p>
+    <p>
+      <a [routerLink]="['/']" fragment="datos-personales">Datos personales</a> ·
+      <a [routerLink]="['/']" fragment="proyectos">Proyectos</a> ·
+      <a routerLink="/contacto">Contacto</a>
+    </p>
+  </div>
+</footer>
