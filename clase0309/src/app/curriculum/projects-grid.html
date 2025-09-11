@@ -1,6 +1,23 @@
-<div class="experience">
-  <div *ngFor="let p of items" [class]="'card ' + p.cssClass">
-    <h3>{{ p.title }}</h3>
-    <img [src]="p.img" [alt]="'Imagen del proyecto ' + p.title" loading="lazy" />
-  </div>
+<div class="experience" role="list">
+  @for (p of items; track p.title; let i = $index) {
+    <article
+      role="listitem"
+      class="card {{ p.cssClass || '' }}"
+      [class.polko]="i === 0"
+      [class.tesis]="i === 1"
+      [class.computacion]="i === 2"
+      [class.start]="i === 3"
+    >
+      <figure class="project">
+        @if (p.img) {
+          <img [src]="p.img" [alt]="'Imagen del proyecto ' + p.title" loading="lazy" />
+        } @else {
+          <div class="placeholder" aria-hidden="true">Sin imagen</div>
+        }
+        <figcaption class="caption">{{ p.title }}</figcaption>
+      </figure>
+    </article>
+  } @empty {
+    <p>No hay proyectos para mostrar.</p>
+  }
 </div>

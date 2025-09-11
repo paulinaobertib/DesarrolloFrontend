@@ -1,28 +1,97 @@
 <section class="contactForm" aria-labelledby="titulo-contacto">
   <h2 id="titulo-contacto">Formulario de contacto</h2>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <label for="name">Nombre</label>
-    <input id="name" type="text" formControlName="name" placeholder="Tu nombre" />
-    <small *ngIf="fieldInvalid('name')">Debe tener entre 3 y 60 letras.</small>
+  @if (sent) {
+    <p class="success" role="status">¡Gracias! Tu mensaje fue enviado.</p>
+  }
 
-    <label for="email">Email</label>
-    <input id="email" type="email" formControlName="email" placeholder="tu@email.com" />
-    <small *ngIf="fieldInvalid('email')">Email inválido.</small>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+    <!-- Nombre -->
+    <div class="field">
+      <label for="name">Nombre</label>
+      <input
+        #nameInput
+        id="name"
+        type="text"
+        formControlName="name"
+        placeholder="Tu nombre"
+        autocomplete="name"
+        [class.is-invalid]="fieldInvalid('name')"
+        [attr.aria-invalid]="fieldInvalid('name')"
+        [attr.aria-describedby]="fieldInvalid('name') ? 'err-name' : null"
+      />
+      @if (fieldInvalid('name')) {
+        <div id="err-name" class="alert alert-error bubble" role="alert" aria-live="assertive">
+          <span class="alert-icon" aria-hidden="true">⚠️</span>
+          <span>Debe tener entre 3 y 60 letras.</span>
+        </div>
+      }
+    </div>
 
-    <label for="subject">Motivo</label>
-    <select id="subject" formControlName="subject">
-      <option value="">-- Selecciona un motivo --</option>
-      <option value="consulta">Consulta</option>
-      <option value="soporte">Soporte</option>
-      <option value="presupuesto">Presupuesto</option>
-    </select>
-    <small *ngIf="fieldInvalid('subject')">Seleccioná un motivo.</small>
+    <!-- Email -->
+    <div class="field">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        placeholder="tu@email.com"
+        autocomplete="email"
+        [class.is-invalid]="fieldInvalid('email')"
+        [attr.aria-invalid]="fieldInvalid('email')"
+        [attr.aria-describedby]="fieldInvalid('email') ? 'err-email' : null"
+      />
+      @if (fieldInvalid('email')) {
+        <div id="err-email" class="alert alert-error bubble" role="alert" aria-live="assertive">
+          <span class="alert-icon" aria-hidden="true">⚠️</span>
+          <span>Email inválido.</span>
+        </div>
+      }
+    </div>
 
-    <label for="message">Mensaje</label>
-    <textarea id="message" rows="3" formControlName="message" placeholder="Escribe tu mensaje aquí..."></textarea>
-    <small *ngIf="fieldInvalid('message')">Mínimo 10 caracteres.</small>
+    <!-- Motivo -->
+    <div class="field">
+      <label for="subject">Motivo</label>
+      <select
+        id="subject"
+        formControlName="subject"
+        [class.is-invalid]="fieldInvalid('subject')"
+        [attr.aria-invalid]="fieldInvalid('subject')"
+        [attr.aria-describedby]="fieldInvalid('subject') ? 'err-subject' : null"
+      >
+        <option value="" disabled>-- Selecciona un motivo --</option>
+        <option value="consulta">Consulta</option>
+        <option value="soporte">Soporte</option>
+        <option value="presupuesto">Presupuesto</option>
+      </select>
+      @if (fieldInvalid('subject')) {
+        <div id="err-subject" class="alert alert-error bubble" role="alert" aria-live="assertive">
+          <span class="alert-icon" aria-hidden="true">⚠️</span>
+          <span>Seleccioná un motivo.</span>
+        </div>
+      }
+    </div>
 
-    <button type="submit">Enviar</button>
+    <!-- Mensaje -->
+    <div class="field">
+      <label for="message">Mensaje</label>
+      <textarea
+        id="message"
+        rows="4"
+        formControlName="message"
+        placeholder="Escribe tu mensaje aquí..."
+        [class.is-invalid]="fieldInvalid('message')"
+        [attr.aria-invalid]="fieldInvalid('message')"
+        [attr.aria-describedby]="fieldInvalid('message') ? 'err-message' : null"
+      ></textarea>
+      @if (fieldInvalid('message')) {
+        <div id="err-message" class="alert alert-error bubble" role="alert" aria-live="assertive">
+          <span class="alert-icon" aria-hidden="true">⚠️</span>
+          <span>Mínimo 10 caracteres.</span>
+        </div>
+      }
+    </div>
+
+    <button type="submit" [disabled]="form.invalid || form.pending">Enviar</button>
   </form>
 </section>

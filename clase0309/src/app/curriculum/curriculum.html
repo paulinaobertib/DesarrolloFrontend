@@ -8,7 +8,12 @@
     <p><strong>Ubicación: </strong> {{ person.location }}</p>
     <p><strong>Email: </strong> <a [href]="'mailto:' + person.email">{{ person.email }}</a></p>
     <p><strong>Teléfono: </strong> <a [href]="'tel:' + person.tel">{{ person.tel }}</a></p>
-    <p><strong>GitHub: </strong> <a href="https://github.com/{{ person.github }}" target="_blank">{{ person.github }}</a></p>
+
+    @if (person.github) {
+      <p><strong>GitHub: </strong> <a href="https://github.com/{{ person.github }}" target="_blank" rel="noreferrer">{{ person.github }}</a></p>
+    } @else {
+      <p><em>Sin GitHub por ahora.</em></p>
+    }
 
     <div class="perfil-info">
       <p>
@@ -23,6 +28,9 @@
 <section id="proyectos" aria-labelledby="titulo-proyectos">
   <h2 id="titulo-proyectos">Proyectos</h2>
 
-  <!-- componente hijo -->
-  <app-projects-grid [items]="projects"></app-projects-grid>
+  @if (projects?.length) {
+    <app-projects-grid [items]="projects"></app-projects-grid>
+  } @else {
+    <p>No hay proyectos cargados.</p>
+  }
 </section>

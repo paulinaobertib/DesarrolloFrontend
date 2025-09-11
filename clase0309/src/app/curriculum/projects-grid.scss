@@ -1,0 +1,84 @@
+/* ----- ProjectsGrid (hijo) ----- */
+:host { display: block; }
+
+/* Matriz 2×2 fija arriba + items nuevos continúan debajo (2 columnas) */
+.experience {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+
+  /* Fijamos las 4 primeras celdas por nombre de área */
+  grid-template-areas:
+    "polko tesis"
+    "computacion start";
+
+  /* Si falta alguna de las 4, backfill para que no queden huecos */
+  grid-auto-flow: row dense;
+  grid-auto-rows: auto;
+}
+
+/* Mapear cards por clase al área asignada (las 4 primeras) */
+.card.polko        { grid-area: polko; }
+.card.tesis        { grid-area: tesis; }
+.card.computacion  { grid-area: computacion; }
+.card.start        { grid-area: start; }
+
+/* Resto de estilos del grid */
+.card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 0;
+  display: flex;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Imagen / placeholder */
+img,
+.placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  filter: saturate(1.03) contrast(1.03);
+  transition: transform .25s ease;
+}
+.card:hover img { transform: scale(1.04); }
+
+/* Título debajo */
+.caption {
+  margin-top: .6rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-text);
+  text-align: center;
+}
+
+/* Placeholder sin imagen */
+.placeholder {
+  display: grid;
+  place-items: center;
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+/* Responsive: una columna manteniendo orden */
+@media (max-width: 900px) {
+  .experience {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "polko"
+      "tesis"
+      "computacion"
+      "start";
+  }
+}

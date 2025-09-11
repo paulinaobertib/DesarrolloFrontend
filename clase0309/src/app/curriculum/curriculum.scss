@@ -1,0 +1,30 @@
+/* Tarjeta contenedora del perfil */
+.perfil {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+  padding: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+/* Info del perfil */
+.perfil-info {
+  max-width: 700px;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--color-text);
+  margin-top: 32px;
+  display: flex;
+  justify-self: center;
+}
+
+/* Textos y enlaces del título */
+.title p { margin: 12px; }
+.title a { color: var(--color-primary); text-decoration: none; }
+.title a:hover { text-decoration: underline; }
+
+/* Responsive */
+@media (max-width: 480px) {
+  .perfil { padding: var(--space-2); }
+}
