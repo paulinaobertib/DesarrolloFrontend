@@ -11,7 +11,16 @@
         <li><a [routerLink]="['/']" fragment="datos-personales">Datos personales</a></li>
         <li><a [routerLink]="['/']" fragment="proyectos">Proyectos</a></li>
         <!-- Ruta aparte -->
-        <li><a routerLink="/contacto" routerLinkActive="active">Contacto</a></li>
+        @if (auth.isLoggedIn()) {
+          <li>
+            <a routerLink="/contacto" routerLinkActive="active">Contacto</a>
+          </li>
+        }
+        <li>
+          <button class="auth-btn" type="button" (click)="onToggleAuth()">
+            {{ auth.isLoggedIn() ? 'Cerrar sesión' : 'Iniciar sesión' }}
+          </button>
+        </li>
       </ul>
     </nav>
   </div>

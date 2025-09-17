@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NgIf } from '@angular/common';
 import { ProjectsGrid } from './projects-grid';
 
 type Project = { title: string; img: string; cssClass: string; };
@@ -7,11 +6,12 @@ type Project = { title: string; img: string; cssClass: string; };
 @Component({
   selector: 'app-curriculum',
   standalone: true,
-  imports: [NgIf, ProjectsGrid],
+  imports: [ProjectsGrid],
   templateUrl: './curriculum.html',
   styleUrl: './curriculum.scss',
 })
 export class Curriculum {
+  
   person = {
     name: 'Paulina Oberti Busso',
     role: 'Estudiante de Ingeniería en Sistemas · Desarrolladora Frontend en Polko',
@@ -28,4 +28,5 @@ export class Curriculum {
     { title: 'Computación', cssClass: 'computacion', img: '/img/computacion.jpg' },
     { title: 'Start UCC',   cssClass: 'start',       img: '/img/start.jpg' },
   ];
+
 }
