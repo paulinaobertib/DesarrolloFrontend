@@ -1,0 +1,17 @@
+/* Paleta base (mantengo tus valores) */
+$light-gray: #b0b0b8;
+$dark-gray: rgb(88, 100, 112);
+$light-text: rgb(218, 216, 216);
+$dark-text: black;
+
+/* Extras útiles para las cards (derivados de tu paleta) */
+$card-bg-top: lighten($light-gray, 22%);
+$card-bg-bottom: lighten($light-gray, 30%);
+$card-border: rgba(0, 0, 0, .06);
+$card-shadow: 0 2px 8px rgba(0,0,0,.08);
+
+/* (opcionales si en otro lado los usás) */
+$background: #444;
+$sidebar-bg: #27272b;
+$hover-bg: #35353a;
+$sidebar-text: #b0b0b8;

@@ -8,6 +8,11 @@
     <nav aria-label="Principal">
       <ul>
         <!-- Enlaces con fragment a secciones del home -->
+        @if (auth.isLoggedIn()) {
+          <li>
+            <a routerLink="/service-http-component" routerLinkActive="active">Arte</a>
+          </li>
+        }
         <li><a [routerLink]="['/']" fragment="datos-personales">Datos personales</a></li>
         <li><a [routerLink]="['/']" fragment="proyectos">Proyectos</a></li>
         <!-- Ruta aparte -->

@@ -1,0 +1,63 @@
+/* Título visible y centrado */
+.title {
+  text-align: center;
+  font-size: var(--fs-h2);
+  color: var(--color-text-h);
+  margin: 0 0 var(--space-2);
+}
+
+@media (min-width: 1024px) {
+  .items-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* ← 2 columnas */
+    justify-content: center;                /* centradas */
+    gap: var(--space-3);
+    max-width: var(--container);            /* usa tu ancho de página */
+    margin: 0 auto;
+  }
+
+  /* por si acaso: que cada ítem ocupe su columna completa */
+  .items-container > app-art-item { display: block; width: 100%; }
+}
+
+/* Responsive: cuando el viewport es menor a 740px, permitimos cards algo menores */
+@media (max-width: 740px) {
+  .items-container {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+}
+
+/* Botones ya centrados y parejos – los dejo igual */
+.buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.simple-button {
+  width: 180px;
+  padding: .6rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-1);
+  cursor: pointer;
+  font: inherit;
+  transition: background .15s ease, color .15s ease, border-color .15s ease,
+              box-shadow .15s ease, transform .05s ease;
+}
+.simple-button:hover {
+  background: var(--color-primary);
+  color: var(--color-text-inv);
+  border-color: var(--color-primary-600);
+  box-shadow: 0 3px 12px rgba(0,0,0,.12);
+}
+.simple-button:active { transform: translateY(1px); }
+.simple-button:disabled {
+  opacity: .6; cursor: default;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: rgba(0,0,0,.08);
+}
