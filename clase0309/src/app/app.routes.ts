@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { Curriculum } from './curriculum/curriculum';
-import { Form } from './form/form';
+import { Curriculum } from './components/curriculum/curriculum';
+import { Form } from './components/form/form';
 import { authGuard } from './misc/auth-guard';
 
 export const routes: Routes = [

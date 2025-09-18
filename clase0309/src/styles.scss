@@ -102,3 +102,43 @@ footer a:hover { text-decoration: underline; }
   .principalDiv .logo { font-size: 1.3rem; }
   main { padding: var(--space-3); }
 }
+
+/* Alinea botón con items del menú */
+nav ul { align-items: center; }
+
+/* Botón de auth: estilo pill, contraste en header oscuro */
+.auth-btn {
+  padding: .45rem .8rem;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.35);
+  color: var(--color-text-inv);
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .05s ease;
+  font: inherit;
+}
+
+.auth-btn:hover {
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.6);
+}
+
+.auth-btn:active { transform: translateY(1px); }
+
+.auth-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Variante cuando hay sesión iniciada */
+.auth-btn.logout {
+  background: #e53935; 
+  border-color: #e53935;
+}
+
+.auth-btn.logout:hover { filter: brightness(.95); }
+
+/* Responsive: que no rompa el wrap del menú */
+@media (max-width: 480px) {
+  .auth-btn { margin-top: .25rem; }
+}

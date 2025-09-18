@@ -17,7 +17,12 @@
           </li>
         }
         <li>
-          <button class="auth-btn" type="button" (click)="onToggleAuth()">
+          <button
+            class="auth-btn"
+            [class.logout]="auth.isLoggedIn()"
+            type="button"
+            (click)="onToggleAuth()"
+          >
             {{ auth.isLoggedIn() ? 'Cerrar sesión' : 'Iniciar sesión' }}
           </button>
         </li>
