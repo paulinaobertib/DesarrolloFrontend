@@ -13,8 +13,8 @@
             <a routerLink="/service-http-component" routerLinkActive="active">Arte</a>
           </li>
         }
-        <li><a [routerLink]="['/']" fragment="datos-personales">Datos personales</a></li>
-        <li><a [routerLink]="['/']" fragment="proyectos">Proyectos</a></li>
+          <li><a href="#datos-personales">Datos personales</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
         <!-- Ruta aparte -->
         @if (auth.isLoggedIn()) {
           <li>

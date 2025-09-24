@@ -75,8 +75,8 @@
 .alert.bubble {
   position: relative;
   margin-left: auto;
-  margin-right: auto;   /* centrado */
-  width: 100%;          /* ocupar ancho del campo; usar max-content si querés más chico */
+  margin-right: auto;   
+  width: 100%;  
   text-align: left;
 }
 .alert.bubble::after,
@@ -91,12 +91,12 @@
 }
 .alert.bubble::after {
   top: -10px;
-  border-bottom: 10px solid currentColor; /* borde de la colita */
+  border-bottom: 10px solid currentColor;
   opacity: .25;
 }
 .alert.bubble::before {
   top: -9px;
-  border-bottom: 9px solid; /* se define por variante */
+  border-bottom: 9px solid;
 }
 
 /* Variante error */
