@@ -4,33 +4,30 @@
   <div id="title" class="title">
     <h1>{{ person.name }}</h1>
     <h3>{{ person.role }}</h3>
-
-    <p><strong>Ubicación: </strong> {{ person.location }}</p>
-    <p><strong>Email: </strong> <a [href]="'mailto:' + person.email">{{ person.email }}</a></p>
-    <p><strong>Teléfono: </strong> <a [href]="'tel:' + person.tel">{{ person.tel }}</a></p>
+    <p><strong>Ubicación: </strong>{{ person.location }}</p>
+    <p>
+      <strong>Email: </strong>
+      <a [href]="'mailto:' + person.email">{{ person.email }}</a>
+    </p>
+    <p>
+      <strong>Teléfono: </strong>
+      <a [href]="'tel:' + person.tel">{{ person.tel }}</a>
+    </p>
 
     @if (person.github) {
-      <p><strong>GitHub: </strong> <a href="https://github.com/{{ person.github }}" target="_blank" rel="noreferrer">{{ person.github }}</a></p>
-    } @else {
-      <p><em>Sin GitHub por ahora.</em></p>
-    }
-
-    <div class="perfil-info">
       <p>
-        Apasionada por el desarrollo de software, con experiencia en Frontend utilizando
-        <strong>React, Vite y CSS moderno</strong>. Actualmente trabajo en <strong>Polko</strong>
-        desarrollando interfaces web responsives.
+        <strong>GitHub: </strong>
+        <a href="https://github.com/{{ person.github }}" target="_blank" rel="noreferrer">
+          {{ person.github }}
+        </a>
       </p>
-    </div>
+    }
   </div>
 </section>
 
 <section id="proyectos" aria-labelledby="titulo-proyectos">
   <h2 id="titulo-proyectos">Proyectos</h2>
 
-  @if (projects?.length) {
-    <app-projects-grid [items]="projects"></app-projects-grid>
-  } @else {
-    <p>No hay proyectos cargados.</p>
-  }
+  <!-- Grilla de proyectos usando PrimeNG p-card -->
+  <app-projects-grid [items]="projects"></app-projects-grid>
 </section>

@@ -1,17 +1,15 @@
 import { Component } from '@angular/core';
 import { ProjectsGrid } from './projects-grid';
-
-type Project = { title: string; img: string; cssClass: string; };
+import { Card } from 'primeng/card';
 
 @Component({
   selector: 'app-curriculum',
   standalone: true,
-  imports: [ProjectsGrid],
+  imports: [ProjectsGrid, Card],
   templateUrl: './curriculum.html',
   styleUrl: './curriculum.scss',
 })
 export class Curriculum {
-  
   person = {
     name: 'Paulina Oberti Busso',
     role: 'Estudiante de Ingeniería en Sistemas · Desarrolladora Frontend en Polko',
@@ -21,12 +19,10 @@ export class Curriculum {
     github: 'paulinaobertib',
   };
 
-  // componente padre
   projects = [
-    { title: 'Polko',       cssClass: 'polko',       img: '/img/polko.jpg' },
-    { title: 'Tesis',       cssClass: 'tesis',       img: '/img/tesis.jpg' },
+    { title: 'Polko', cssClass: 'polko', img: '/img/polko.jpg' },
+    { title: 'Tesis', cssClass: 'tesis', img: '/img/tesis.jpg' },
     { title: 'Computación', cssClass: 'computacion', img: '/img/computacion.jpg' },
-    { title: 'Start UCC',   cssClass: 'start',       img: '/img/start.jpg' },
+    { title: 'Start UCC', cssClass: 'start', img: '/img/start.jpg' },
   ];
-
 }

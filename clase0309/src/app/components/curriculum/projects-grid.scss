@@ -1,38 +1,34 @@
-/* ----- ProjectsGrid (hijo) ----- */
 :host { display: block; }
 
-/* Matriz 2×2 fija arriba + items nuevos continúan debajo (2 columnas) */
+/* Grid 2×2 para los 4 primeros proyectos */
 .experience {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-3);
 
-  /* Fijamos las 4 primeras celdas por nombre de área */
   grid-template-areas:
     "polko tesis"
     "computacion start";
 
-  /* Si falta alguna de las 4, backfill para que no queden huecos */
   grid-auto-flow: row dense;
   grid-auto-rows: auto;
 }
 
-/* Mapear cards por clase al área asignada (las 4 primeras) */
+/* Mapear cada card al área correspondiente */
 .card.polko        { grid-area: polko; }
 .card.tesis        { grid-area: tesis; }
 .card.computacion  { grid-area: computacion; }
 .card.start        { grid-area: start; }
 
-/* Resto de estilos del grid */
-.card {
+/* Estilo base de las cards PrimeNG */
+:host ::ng-deep .p-card.card {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  padding: 0;
-  display: flex;
-  background: var(--color-surface);
+  padding: 0; /* eliminamos padding interno */
   border-radius: var(--radius);
   box-shadow: var(--shadow-1);
+  background: var(--color-surface);
 }
 
 .project {
@@ -41,20 +37,20 @@
   width: 100%;
 }
 
-/* Imagen / placeholder */
+/* Imagen o placeholder */
 img,
 .placeholder {
   width: 100%;
   aspect-ratio: 16 / 10;
-  height: auto;
   object-fit: cover;
   border-radius: 8px;
   filter: saturate(1.03) contrast(1.03);
   transition: transform .25s ease;
 }
+
 .card:hover img { transform: scale(1.04); }
 
-/* Título debajo */
+/* Título */
 .caption {
   margin-top: .6rem;
   font-weight: 700;
@@ -71,7 +67,7 @@ img,
   color: #6b7280;
 }
 
-/* Responsive: una columna manteniendo orden */
+/* Responsive: una columna */
 @media (max-width: 900px) {
   .experience {
     grid-template-columns: 1fr;

@@ -1,22 +1,15 @@
-<div class="experience" role="list">
-  @for (p of items; track p.title; let i = $index) {
-    <article
-      role="listitem"
-      class="card {{ p.cssClass || '' }}"
-      [class.polko]="i === 0"
-      [class.tesis]="i === 1"
-      [class.computacion]="i === 2"
-      [class.start]="i === 3"
-    >
-      <figure class="project">
+<div class="experience">
+  @for (p of items; track p.title) {
+    <p-card class="card {{ p.cssClass || '' }}">
+      <div class="project">
         @if (p.img) {
           <img [src]="p.img" [alt]="'Imagen del proyecto ' + p.title" loading="lazy" />
         } @else {
-          <div class="placeholder" aria-hidden="true">Sin imagen</div>
+          <div class="placeholder">Sin imagen</div>
         }
-        <figcaption class="caption">{{ p.title }}</figcaption>
-      </figure>
-    </article>
+        <div class="caption">{{ p.title }}</div>
+      </div>
+    </p-card>
   } @empty {
     <p>No hay proyectos para mostrar.</p>
   }

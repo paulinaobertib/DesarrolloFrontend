@@ -20,7 +20,7 @@
   font-weight: 600;
 }
 
-/* Controles */
+/* Controles (todos con texto oscuro y mismo estilo) */
 .contactForm input,
 .contactForm select,
 .contactForm textarea {
@@ -32,6 +32,8 @@
   outline: none;
   background: #fff;
   font: inherit;
+  color: var(--color-text);      /* 👈 texto oscuro */
+  caret-color: var(--color-text);/* 👈 color del cursor */
 }
 .contactForm textarea { resize: vertical; min-height: 110px; }
 
@@ -126,4 +128,21 @@
 /* Responsive */
 @media (max-width: 480px) {
   .contactForm { padding: var(--space-2); }
+}
+
+/* Placeholders en gris y opción deshabilitada del select */
+.contactForm select option[disabled],
+.contactForm input::placeholder,
+.contactForm textarea::placeholder {
+  color: #9ca3af;
+  opacity: 1;
+}
+
+/* Fix de autofill (Chrome/Safari) para que no ponga el texto blanco */
+.contactForm input:-webkit-autofill,
+.contactForm textarea:-webkit-autofill,
+.contactForm select:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-text);
+  box-shadow: 0 0 0px 1000px #fff inset;
+  transition: background-color 9999s ease-out 0s;
 }
