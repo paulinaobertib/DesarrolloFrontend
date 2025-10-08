@@ -18,6 +18,8 @@ Se desarrolló un **Currículum Vitae** con:
 ### Clase 03/09
 Comenzamos a usar Angular y pasamos lo realizado la clase anterior.
 - Formulario de contacto pasó a estar en una ruta aparte.
+- Correr: ng serve
 
 ### Clase 01/10
 Comenzamos a usar React. Pasamos el proyecto que teníamos en Angular a React.
+- Correr: npm run dev
