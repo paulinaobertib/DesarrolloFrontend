@@ -34,7 +34,7 @@ export function ArtworksPage() {
             className="simple-button"
             type="button"
             onClick={nextPage}
-            disabled={isLoading || page === maxPages}
+            disabled={isLoading || (maxPages > 0 && page >= maxPages)}
           >
             Next Page
           </button>

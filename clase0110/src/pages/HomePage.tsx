@@ -2,8 +2,8 @@ import { ProjectsGrid, type Project } from '../components/ProjectsGrid';
 
 const person = {
   name: 'Paulina Oberti Busso',
-  role: 'Estudiante de Ingeniería en Sistemas · Desarrolladora Frontend en Polko',
-  location: 'Córdoba, Argentina',
+  role: 'Estudiante de Ingenieria en Sistemas y Desarrolladora Frontend en Polko',
+  location: 'Cordoba, Argentina',
   email: 'paulinaobertibusso@gmail.com',
   tel: '+54 9 351 326 4538',
   github: 'paulinaobertib',
@@ -12,7 +12,7 @@ const person = {
 const projects: Project[] = [
   { title: 'Polko', cssClass: 'polko', img: '/img/polko.jpg' },
   { title: 'Tesis', cssClass: 'tesis', img: '/img/tesis.jpg' },
-  { title: 'Computación', cssClass: 'computacion', img: '/img/computacion.jpg' },
+  { title: 'Computacion', cssClass: 'computacion', img: '/img/computacion.jpg' },
   { title: 'Start UCC', cssClass: 'start', img: '/img/start.jpg' },
 ];
 
@@ -26,7 +26,7 @@ export function HomePage() {
           <h1>{person.name}</h1>
           <h3>{person.role}</h3>
           <p>
-            <strong>Ubicación: </strong>
+            <strong>Ubicacion: </strong>
             {person.location}
           </p>
           <p>
@@ -34,7 +34,7 @@ export function HomePage() {
             <a href={`mailto:${person.email}`}>{person.email}</a>
           </p>
           <p>
-            <strong>Teléfono: </strong>
+            <strong>Telefono: </strong>
             <a href={`tel:${person.tel}`}>{person.tel}</a>
           </p>
 

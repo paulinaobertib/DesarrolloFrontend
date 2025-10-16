@@ -1,22 +1,67 @@
-# Curriculum + Arte · React
+# 🧑‍💻 Práctico 3: React
 
-Aplicación de curriculum vitae y galería de obras reimplementada en React + Vite.
+## 📘 Descripción
 
-## Requisitos
+Tercer trabajo práctico de **Desarrollo Web**, que consiste en crear una **aplicación de CV en React**, aplicando componentes, hooks, rutas, formularios y consumo de API externa.  
+Realizado por **Paulina Oberti Busso** y **María Victoria Vaccarini**.
 
-- Node.js 18 o superior
-- npm 9 o superior
+---
 
-## Scripts disponibles
+## 🧱 Estructura
 
-- `npm install` · instala dependencias.
-- `npm run dev` · levanta el servidor de desarrollo (Vite) en `http://localhost:5173/`.
-- `npm run build` · genera la build de producción en `dist/`.
-- `npm run preview` · sirve la build generada para verificación local.
+```
+📂 Practico3_React_CV
+├── src/
+│ ├── components/
+│ │ ├── ArtItem.tsx
+│ │ ├── Footer.tsx
+│ │ ├── Header.tsx
+│ │ ├── ProjectsGrid.tsx
+│ │ └── ProtectedRoute.tsx
+│ ├── context/
+│ ├── hooks/
+│ ├── pages/
+│ ├── services/
+│ ├── types/
+│ ├── App.tsx
+│ ├── index.css
+│ └── main.tsx
+├── package.json
+```
 
-## Funcionalidades principales
+---
 
-- Página principal con datos personales y grilla de proyectos.
-- Formulario de contacto con validaciones accesibles y reinicio tras envío simulado.
-- Vista protegida con consumo paginado de la API del Art Institute of Chicago.
-- Estado de autenticación global para habilitar / restringir secciones (solo a modo demo).
+## 💡 Contenido
+
+- **Componentes:** estructurados y reutilizables (`Header`, `Footer`, `ProjectsGrid`, etc.).  
+- **Hooks:** uso de `useState` y `useEffect` para manejo de estado y efectos.  
+- **Renderizado condicional y en loop:** mediante lógica de JavaScript en JSX.  
+- **Rutas públicas y privadas:** implementadas con **React Router DOM** (`ProtectedRoute`).  
+- **Context y Provider:** para manejo del login global.  
+- **Llamadas HTTP:** realizadas con **Axios**, incluyendo un **interceptor**.  
+- **Uso de Material UI:** para la interfaz visual.  
+- **Formularios:** con **React Hook Form** y validaciones.  
+- **Consumo de API:**  
+  [https://jsonplaceholder.typicode.com](https://jsonplaceholder.typicode.com)
+
+---
+
+## ⚙️ Tecnologías
+
+- **React + Vite**  
+- **TypeScript**  
+- **React Router DOM**  
+- **Axios + Interceptor**  
+- **Material UI (MUI)**  
+- **React Hook Form**
+
+---
+## Comando
+Correr con **npm run dev**
+
+---
+
+## 👩‍🎓 Autoras
+
+**Paulina Oberti Busso**  
+**María Victoria Vaccarini**

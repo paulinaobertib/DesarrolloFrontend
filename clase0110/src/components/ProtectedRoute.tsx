@@ -26,7 +26,7 @@ export function ProtectedRoute() {
 
   return (
     <RedirectWithAlert
-      message="Debes iniciar sesión para acceder a esta página."
+      message="Debes iniciar sesion para acceder a esta pagina."
       to="/"
       state={{ from: location }}
     />

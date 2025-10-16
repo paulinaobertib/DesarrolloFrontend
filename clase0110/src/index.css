@@ -401,6 +401,7 @@ footer a:hover {
 .items-container {
   display: grid;
   gap: var(--space-2);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .card-container {
@@ -420,6 +421,26 @@ footer a:hover {
 .card-container .description {
   color: var(--color-text);
   line-height: 1.5;
+}
+
+.card-container img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+  object-fit: cover;
+}
+
+.artwork-link {
+  display: block;
+}
+
+.card-container a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.card-container a:hover {
+  text-decoration: underline;
 }
 
 .card-container .origin {
@@ -488,6 +509,10 @@ footer a:hover {
 
   .contactForm {
     padding: var(--space-2);
+  }
+
+  .items-container {
+    grid-template-columns: 1fr;
   }
 }
 

@@ -1,52 +1,67 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { Artwork, ArtworksResponse } from '../types/artwork';
+import { http } from '../services/http';
+import type { Artwork, ArtworkApiResponse } from '../types/artwork';
+import { useStatus } from './useStatus';
 
-const API_URL = 'https://api.artic.edu/api/v1/artworks';
-const FIELDS = 'id,title,description,place_of_origin';
 const PAGE_SIZE = 2;
 
 export function useArtworks() {
   const [page, setPage] = useState(1);
   const [maxPages, setMaxPages] = useState(1);
   const [artworks, setArtworks] = useState<Artwork[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { status, setLoading, setSuccess, setError: markError, isLoading } = useStatus('idle');
 
   useEffect(() => {
     let cancelled = false;
     const controller = new AbortController();
 
     async function load() {
-      setIsLoading(true);
+      setLoading();
       setError(null);
+      setArtworks([]);
       try {
-        const params = new URLSearchParams({
-          fields: FIELDS,
-          limit: String(PAGE_SIZE),
-          page: String(page),
-        });
-        console.log('[Artworks] Requesting page', page);
-        const response = await fetch(`${API_URL}?${params.toString()}`, {
+        const response = await http.get<ArtworkApiResponse[]>('/photos', {
+          params: {
+            _page: page,
+            _limit: PAGE_SIZE,
+            albumId: 1,
+          },
           signal: controller.signal,
         });
-        if (!response.ok) {
-          throw new Error(`Error ${response.status}`);
-        }
-        const body = (await response.json()) as ArtworksResponse;
         if (cancelled) return;
-        setArtworks(body.data ?? []);
-        setMaxPages(body.pagination?.total_pages ?? 1);
+
+        const totalItemsHeader = response.headers['x-total-count'];
+        const totalItems = totalItemsHeader ? Number(totalItemsHeader) : undefined;
+        const items = response.data ?? [];
+
+        const mappedItems: Artwork[] = items.slice(0, PAGE_SIZE).map((item) => ({
+          id: item.id,
+          title: item.title,
+          thumbnailUrl: item.thumbnailUrl,
+          imageUrl: item.url,
+        }));
+
+        setArtworks(mappedItems);
+        if (totalItems && Number.isFinite(totalItems)) {
+          setMaxPages(Math.max(1, Math.ceil(totalItems / PAGE_SIZE)));
+        } else if (items.length < PAGE_SIZE) {
+          setMaxPages(page);
+        }
+        setSuccess();
       } catch (err) {
-        if (cancelled || (err instanceof DOMException && err.name === 'AbortError')) {
+        if (cancelled) {
+          return;
+        }
+        if (err instanceof DOMException && err.name === 'AbortError') {
           return;
         }
         console.error('[Artworks] Failed request', err);
-        setError('No se pudieron cargar las obras. Intenta nuevamente.');
         setArtworks([]);
+        setError('No se pudieron cargar las obras. Intenta nuevamente.');
+        markError();
       } finally {
-        if (!cancelled) {
-          setIsLoading(false);
-        }
+        // no-op; state updates happen above
       }
     }
 
@@ -56,7 +71,7 @@ export function useArtworks() {
       cancelled = true;
       controller.abort();
     };
-  }, [page]);
+  }, [markError, page, setLoading, setSuccess]);
 
   const nextPage = useCallback(() => {
     setPage((prev) => prev + 1);
@@ -69,6 +84,7 @@ export function useArtworks() {
   const info = useMemo(
     () => ({
       page,
+      status,
       maxPages,
       artworks,
       isLoading,
@@ -76,7 +92,7 @@ export function useArtworks() {
       nextPage,
       prevPage,
     }),
-    [artworks, error, isLoading, maxPages, nextPage, page, prevPage],
+    [artworks, error, isLoading, maxPages, nextPage, page, prevPage, status],
   );
 
   return info;

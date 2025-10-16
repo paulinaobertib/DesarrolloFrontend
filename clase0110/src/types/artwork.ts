@@ -1,14 +1,14 @@
-export type Artwork = {
+export type ArtworkApiResponse = {
+  albumId: number;
   id: number;
-  title: string | null;
-  description: string | null;
-  place_of_origin: string | null;
+  title: string;
+  url: string;
+  thumbnailUrl: string;
 };
 
-export type ArtworksResponse = {
-  data: Artwork[];
-  pagination?: {
-    total_pages?: number;
-    current_page?: number;
-  };
+export type Artwork = {
+  id: number;
+  title: string;
+  imageUrl: string;
+  thumbnailUrl: string;
 };

@@ -1,4 +1,5 @@
-import { FormEvent, useMemo, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 type ContactValues = {
   name: string;
@@ -7,7 +8,7 @@ type ContactValues = {
   message: string;
 };
 
-const initialValues: ContactValues = {
+const defaultValues: ContactValues = {
   name: '',
   email: '',
   subject: '',
@@ -15,103 +16,70 @@ const initialValues: ContactValues = {
 };
 
 export function ContactPage() {
-  const [values, setValues] = useState(initialValues);
-  const [touched, setTouched] = useState<Record<keyof ContactValues, boolean>>({
-    name: false,
-    email: false,
-    subject: false,
-    message: false,
-  });
-  const [submitted, setSubmitted] = useState(false);
   const [sent, setSent] = useState(false);
-  const nameRef = useRef<HTMLInputElement>(null);
 
-  const errors = useMemo(() => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return {
-      name:
-        values.name.trim().length === 0
-          ? 'Debe tener entre 3 y 60 letras.'
-          : values.name.trim().length < 3 || values.name.trim().length > 60
-            ? 'Debe tener entre 3 y 60 letras.'
-            : null,
-      email:
-        values.email.trim().length === 0
-          ? 'Email inválido.'
-          : emailPattern.test(values.email)
-            ? null
-            : 'Email inválido.',
-      subject: values.subject ? null : 'Seleccioná un motivo.',
-      message:
-        values.message.trim().length === 0
-          ? 'Mínimo 10 caracteres.'
-          : values.message.trim().length < 10
-            ? 'Mínimo 10 caracteres.'
-            : null,
-    } as const;
-  }, [values]);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setFocus,
+    formState: { errors, isSubmitting, isSubmitSuccessful, isSubmitted, touchedFields, isValid },
+  } = useForm<ContactValues>({
+    defaultValues,
+    mode: 'onChange',
+  });
 
-  const fieldInvalid = (field: keyof ContactValues) =>
-    (submitted || touched[field]) && !!errors[field];
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      setSent(true);
+      reset(defaultValues);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      queueMicrotask(() => setFocus('name'));
+    }
+  }, [isSubmitSuccessful, reset, setFocus]);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setSubmitted(true);
+  const onSubmit = handleSubmit(async (values: ContactValues) => {
+    console.debug('[Contact] submit', values);
+    await new Promise((resolve) => setTimeout(resolve, 400));
+  });
 
-    const hasErrors = Object.values(errors).some(Boolean);
-    if (hasErrors) return;
-
-    setSent(true);
-    resetForm();
-  };
-
-  const resetForm = () => {
-    setSubmitted(false);
-    setValues(initialValues);
-    setTouched({
-      name: false,
-      email: false,
-      subject: false,
-      message: false,
-    });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    queueMicrotask(() => {
-      nameRef.current?.focus();
-    });
-  };
+  const showError = (field: keyof ContactValues) =>
+    Boolean(errors[field]) && (isSubmitted || touchedFields[field]);
 
   return (
     <section className="contactForm" aria-labelledby="titulo-contacto">
       <h2 id="titulo-contacto">Formulario de contacto</h2>
 
-      {sent && <p className="success" role="status">¡Gracias! Tu mensaje fue enviado.</p>}
+      {sent && (
+        <p className="success" role="status">
+          Gracias! Tu mensaje fue enviado.
+        </p>
+      )}
 
-      <form noValidate onSubmit={handleSubmit}>
+      <form noValidate onSubmit={onSubmit}>
         <div className="field">
           <label htmlFor="name">Nombre</label>
           <input
-            ref={nameRef}
             id="name"
-            name="name"
             type="text"
             placeholder="Tu nombre"
             autoComplete="name"
-            value={values.name}
-            onChange={({ target }) => {
-              setValues((prev) => ({ ...prev, name: target.value }));
-              setSent(false);
-            }}
-            onBlur={() => setTouched((prev) => ({ ...prev, name: true }))}
-            className={fieldInvalid('name') ? 'is-invalid' : undefined}
-            aria-invalid={fieldInvalid('name') || undefined}
-            aria-describedby={fieldInvalid('name') ? 'err-name' : undefined}
+            {...register('name', {
+              required: 'Debe tener entre 3 y 60 letras.',
+              minLength: { value: 3, message: 'Debe tener entre 3 y 60 letras.' },
+              maxLength: { value: 60, message: 'Debe tener entre 3 y 60 letras.' },
+              onChange: () => setSent(false),
+            })}
+            className={showError('name') ? 'is-invalid' : undefined}
+            aria-invalid={showError('name') || undefined}
+            aria-describedby={showError('name') ? 'err-name' : undefined}
           />
-          {fieldInvalid('name') && (
+          {showError('name') && (
             <div id="err-name" className="alert alert-error bubble" role="alert" aria-live="assertive">
               <span className="alert-icon" aria-hidden="true">
-                ⚠️
+                !
               </span>
-              <span>{errors.name}</span>
+              <span>{errors.name?.message}</span>
             </div>
           )}
         </div>
@@ -120,26 +88,27 @@ export function ContactPage() {
           <label htmlFor="email">Email</label>
           <input
             id="email"
-            name="email"
             type="email"
             placeholder="tu@email.com"
             autoComplete="email"
-            value={values.email}
-            onChange={({ target }) => {
-              setValues((prev) => ({ ...prev, email: target.value }));
-              setSent(false);
-            }}
-            onBlur={() => setTouched((prev) => ({ ...prev, email: true }))}
-            className={fieldInvalid('email') ? 'is-invalid' : undefined}
-            aria-invalid={fieldInvalid('email') || undefined}
-            aria-describedby={fieldInvalid('email') ? 'err-email' : undefined}
+            {...register('email', {
+              required: 'Email invalido.',
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: 'Email invalido.',
+              },
+              onChange: () => setSent(false),
+            })}
+            className={showError('email') ? 'is-invalid' : undefined}
+            aria-invalid={showError('email') || undefined}
+            aria-describedby={showError('email') ? 'err-email' : undefined}
           />
-          {fieldInvalid('email') && (
+          {showError('email') && (
             <div id="err-email" className="alert alert-error bubble" role="alert" aria-live="assertive">
               <span className="alert-icon" aria-hidden="true">
-                ⚠️
+                !
               </span>
-              <span>{errors.email}</span>
+              <span>{errors.email?.message}</span>
             </div>
           )}
         </div>
@@ -148,16 +117,13 @@ export function ContactPage() {
           <label htmlFor="subject">Motivo</label>
           <select
             id="subject"
-            name="subject"
-            value={values.subject}
-            onChange={({ target }) => {
-              setValues((prev) => ({ ...prev, subject: target.value }));
-              setSent(false);
-            }}
-            onBlur={() => setTouched((prev) => ({ ...prev, subject: true }))}
-            className={fieldInvalid('subject') ? 'is-invalid' : undefined}
-            aria-invalid={fieldInvalid('subject') || undefined}
-            aria-describedby={fieldInvalid('subject') ? 'err-subject' : undefined}
+            {...register('subject', {
+              required: 'Selecciona un motivo.',
+              onChange: () => setSent(false),
+            })}
+            className={showError('subject') ? 'is-invalid' : undefined}
+            aria-invalid={showError('subject') || undefined}
+            aria-describedby={showError('subject') ? 'err-subject' : undefined}
           >
             <option value="" disabled>
               -- Selecciona un motivo --
@@ -166,12 +132,12 @@ export function ContactPage() {
             <option value="soporte">Soporte</option>
             <option value="presupuesto">Presupuesto</option>
           </select>
-          {fieldInvalid('subject') && (
+          {showError('subject') && (
             <div id="err-subject" className="alert alert-error bubble" role="alert" aria-live="assertive">
               <span className="alert-icon" aria-hidden="true">
-                ⚠️
+                !
               </span>
-              <span>{errors.subject}</span>
+              <span>{errors.subject?.message}</span>
             </div>
           )}
         </div>
@@ -180,31 +146,29 @@ export function ContactPage() {
           <label htmlFor="message">Mensaje</label>
           <textarea
             id="message"
-            name="message"
             rows={4}
-            placeholder="Escribe tu mensaje aquí..."
-            value={values.message}
-            onChange={({ target }) => {
-              setValues((prev) => ({ ...prev, message: target.value }));
-              setSent(false);
-            }}
-            onBlur={() => setTouched((prev) => ({ ...prev, message: true }))}
-            className={fieldInvalid('message') ? 'is-invalid' : undefined}
-            aria-invalid={fieldInvalid('message') || undefined}
-            aria-describedby={fieldInvalid('message') ? 'err-message' : undefined}
+            placeholder="Escribe tu mensaje..."
+            {...register('message', {
+              required: 'Minimo 10 caracteres.',
+              minLength: { value: 10, message: 'Minimo 10 caracteres.' },
+              onChange: () => setSent(false),
+            })}
+            className={showError('message') ? 'is-invalid' : undefined}
+            aria-invalid={showError('message') || undefined}
+            aria-describedby={showError('message') ? 'err-message' : undefined}
           />
-          {fieldInvalid('message') && (
+          {showError('message') && (
             <div id="err-message" className="alert alert-error bubble" role="alert" aria-live="assertive">
               <span className="alert-icon" aria-hidden="true">
-                ⚠️
+                !
               </span>
-              <span>{errors.message}</span>
+              <span>{errors.message?.message}</span>
             </div>
           )}
         </div>
 
-        <button type="submit" disabled={Object.values(errors).some(Boolean)}>
-          Enviar
+        <button type="submit" disabled={!isValid || isSubmitting}>
+          {isSubmitting ? 'Enviando...' : 'Enviar'}
         </button>
       </form>
     </section>

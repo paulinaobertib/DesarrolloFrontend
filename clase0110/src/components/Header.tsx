@@ -11,7 +11,7 @@ export function Header({ isLoggedIn, onToggleAuth }: HeaderProps) {
       <div className="topbar">
         <div className="principalDiv">
           <span className="logo" aria-hidden="true">
-            👩‍💻
+            👩🏼‍💻
           </span>
           <strong>Curriculum Vitae</strong>
         </div>
@@ -20,7 +20,7 @@ export function Header({ isLoggedIn, onToggleAuth }: HeaderProps) {
           <ul>
             {isLoggedIn && (
               <li>
-                <NavLink to="/service-http-component" className={({ isActive }) => (isActive ? 'active' : '')}>
+                <NavLink to="/service-http-component" className={({ isActive }) => (isActive ? 'active' : undefined)}>
                   Arte
                 </NavLink>
               </li>
@@ -33,7 +33,7 @@ export function Header({ isLoggedIn, onToggleAuth }: HeaderProps) {
             </li>
             {isLoggedIn && (
               <li>
-                <NavLink to="/contacto" className={({ isActive }) => (isActive ? 'active' : '')}>
+                <NavLink to="/contacto" className={({ isActive }) => (isActive ? 'active' : undefined)}>
                   Contacto
                 </NavLink>
               </li>
@@ -44,7 +44,7 @@ export function Header({ isLoggedIn, onToggleAuth }: HeaderProps) {
                 type="button"
                 onClick={onToggleAuth}
               >
-                {isLoggedIn ? 'Cerrar sesión' : 'Iniciar sesión'}
+                {isLoggedIn ? 'Cerrar sesion' : 'Iniciar sesion'}
               </button>
             </li>
           </ul>
