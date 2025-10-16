@@ -1,19 +1,15 @@
 import { Component, input } from '@angular/core';
 import { Artwork } from '../../../models/artwork.model';
+import { DefaultValuePipe } from '../../../pipes/default-value.pipe';
 
 @Component({
   selector: 'app-art-item',
-  imports: [],
+  standalone: true,
+  imports: [DefaultValuePipe],
   templateUrl: './art-item.html',
-  styleUrl: './art-item.scss'
+  styleUrl: './art-item.scss',
 })
 export class ArtItem {
 
   inputValue = input<Artwork>();
-
-
-  getDescription(): string {
-    return this.inputValue()?.description || 'No description available.' + ' Origin: ' + (this.inputValue()?.place_of_origin || 'Unknown');
-  }
-
 }

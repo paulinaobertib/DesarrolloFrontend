@@ -1,9 +1,8 @@
-import { Injectable, signal, computed} from '@angular/core';
+import { Injectable, computed, signal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class Auth {
-  
-  private loggedIn = signal(false); // estado de login en memoria
+  private loggedIn = signal(false);
 
   login() {
     this.loggedIn.set(true);
@@ -12,6 +11,8 @@ export class Auth {
   logout() {
     this.loggedIn.set(false);
   }
-  public isLogged = computed(() => this.loggedIn());
 
+  isLogged() {
+    return computed(() => this.loggedIn())();
+  }
 }

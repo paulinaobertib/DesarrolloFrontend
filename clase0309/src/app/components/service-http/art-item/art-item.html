@@ -1,4 +1,12 @@
 <div class="card-container">
-    <div class="title">{{inputValue()?.id + ' - ' + inputValue()?.title}}</div>
-    <div class="description" [innerHTML]="getDescription()"></div>
+    <div class="title">
+        {{ inputValue()?.id ?? 'Sin ID' }} - {{ inputValue()?.title | defaultValue:'Sin titulo' }}
+    </div>
+    <div class="description">
+        <strong>Descripcion:</strong>
+        <div [innerHTML]="inputValue()?.description | defaultValue:'Sin descripcion disponible.'"></div>
+    </div>
+    <div class="origin">
+        <strong>Origen:</strong> {{ inputValue()?.place_of_origin | defaultValue:'Desconocido' }}
+    </div>
 </div>

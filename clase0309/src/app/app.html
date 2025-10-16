@@ -1,21 +1,19 @@
 <header>
   <div class="topbar">
     <div class="principalDiv">
-      <span class="logo" aria-hidden="true">👩‍💻</span>
+      <span class="logo" aria-hidden="true">CV</span>
       <strong>Curriculum Vitae</strong>
     </div>
 
     <nav aria-label="Principal">
       <ul>
-        <!-- Enlaces con fragment a secciones del home -->
         @if (auth.isLoggedIn()) {
           <li>
             <a routerLink="/service-http-component" routerLinkActive="active">Arte</a>
           </li>
         }
-          <li><a href="#datos-personales">Datos personales</a></li>
-          <li><a href="#proyectos">Proyectos</a></li>
-        <!-- Ruta aparte -->
+        <li><a href="#datos-personales">Datos personales</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
         @if (auth.isLoggedIn()) {
           <li>
             <a routerLink="/contacto" routerLinkActive="active">Contacto</a>
@@ -28,7 +26,7 @@
             type="button"
             (click)="onToggleAuth()"
           >
-            {{ auth.isLoggedIn() ? 'Cerrar sesión' : 'Iniciar sesión' }}
+            {{ auth.isLoggedIn() ? 'Cerrar sesion' : 'Iniciar sesion' }}
           </button>
         </li>
       </ul>
@@ -42,10 +40,10 @@
 
 <footer>
   <div class="container">
-    <p>© 2025 Paulina Oberti Busso - Maria Victoria Vaccarini.</p>
+    <p>(c) 2025 Paulina Oberti Busso - Maria Victoria Vaccarini.</p>
     <p>
-      <a [routerLink]="['/']" fragment="datos-personales">Datos personales</a> ·
-      <a [routerLink]="['/']" fragment="proyectos">Proyectos</a> ·
+      <a [routerLink]="['/']" fragment="datos-personales">Datos personales</a> |
+      <a [routerLink]="['/']" fragment="proyectos">Proyectos</a> |
       <a routerLink="/contacto">Contacto</a>
     </p>
   </div>

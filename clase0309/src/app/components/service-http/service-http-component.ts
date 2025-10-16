@@ -4,9 +4,10 @@ import { ArtItem } from "./art-item/art-item";
 
 @Component({
   selector: 'app-service-http',
+  standalone: true,
   imports: [ArtItem],
   templateUrl: './service-http-component.html',
-  styleUrl: './service-http-component.scss'
+  styleUrl: './service-http-component.scss',
 })
 export class ServiceHttpComponent {
 

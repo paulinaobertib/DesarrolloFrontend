@@ -31,16 +31,16 @@ export class Form {
   });
 
   fieldInvalid(name: keyof typeof this.form.controls): boolean {
-    const c = this.form.controls[name];
-    return !!(c && (c.touched || this.submitted) && c.invalid);
+    const control = this.form.controls[name];
+    return !!(control && (control.touched || this.submitted) && control.invalid);
   }
 
   onSubmit() {
     this.submitted = true;
     if (this.form.invalid) return;
 
-    // 1) aquí iría tu envío (HTTP/email)
-    // 2) mostrar banner de éxito
+    // 1) aqui iria tu envio (HTTP/email)
+    // 2) mostrar banner de exito
     this.sent = true;
 
     // 3) resetear todo a blanco y volver arriba

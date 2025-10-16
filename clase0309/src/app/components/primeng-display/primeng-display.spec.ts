@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PrimengDisplay } from './primeng-display';
 
 describe('PrimengDisplay', () => {
@@ -8,9 +7,8 @@ describe('PrimengDisplay', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PrimengDisplay]
-    })
-    .compileComponents();
+      imports: [PrimengDisplay],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PrimengDisplay);
     component = fixture.componentInstance;

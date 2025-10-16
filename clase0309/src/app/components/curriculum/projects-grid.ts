@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, output } from '@angular/core';
 import { Card } from 'primeng/card';
 
 export type Project = { title: string; img?: string; cssClass?: string };
@@ -12,4 +12,9 @@ export type Project = { title: string; img?: string; cssClass?: string };
 })
 export class ProjectsGrid {
   @Input({ required: true }) items: Project[] = [];
+  projectSelected = output<Project>();
+
+  onSelect(project: Project) {
+    this.projectSelected.emit(project);
+  }
 }

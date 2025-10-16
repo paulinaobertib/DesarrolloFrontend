@@ -4,13 +4,13 @@
   <div id="title" class="title">
     <h1>{{ person.name }}</h1>
     <h3>{{ person.role }}</h3>
-    <p><strong>Ubicación: </strong>{{ person.location }}</p>
+    <p><strong>Ubicacion: </strong>{{ person.location }}</p>
     <p>
       <strong>Email: </strong>
       <a [href]="'mailto:' + person.email">{{ person.email }}</a>
     </p>
     <p>
-      <strong>Teléfono: </strong>
+      <strong>Telefono: </strong>
       <a [href]="'tel:' + person.tel">{{ person.tel }}</a>
     </p>
 
@@ -29,5 +29,11 @@
   <h2 id="titulo-proyectos">Proyectos</h2>
 
   <!-- Grilla de proyectos usando PrimeNG p-card -->
-  <app-projects-grid [items]="projects"></app-projects-grid>
+  <app-projects-grid [items]="projects" (projectSelected)="onProjectSelect($event)"></app-projects-grid>
+
+  @if (selectedProject) {
+    <p class="project-selection" role="status">
+      Ultimo proyecto seleccionado: <strong>{{ selectedProject.title }}</strong>
+    </p>
+  }
 </section>

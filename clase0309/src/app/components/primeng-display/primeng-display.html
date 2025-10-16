@@ -1,28 +1,21 @@
 <div class="container">
-    <div class="title">PrimeNG Quick Demo</div>
+  <div class="title">PrimeNG Quick Demo</div>
 
-    <p-card header="PrimeNG Card" subheader="Example" class="mb-3">
+  <p-card header="PrimeNG Card" subheader="Example" class="mb-3">
     <div class="card-container">
+      <input type="text" pInputText placeholder="Type something" />
 
-        <!-- Input -->
-        <input type="text" pInputText placeholder="Type something" />
+      <p-autocomplete
+        [(ngModel)]="selectedItem"
+        [virtualScroll]="true"
+        [suggestions]="filteredItems"
+        [virtualScrollItemSize]="34"
+        (completeMethod)="filterItems($event)"
+        optionLabel="label"
+        [dropdown]="true"
+      ></p-autocomplete>
 
-        <!-- Autoselect -->
-        <p-autocomplete 
-        [(ngModel)]="selectedItem" 
-        [virtualScroll]="true" 
-        [suggestions]="filteredItems" 
-        [virtualScrollItemSize]="34" 
-        (completeMethod)="filterItems($event)" 
-        optionLabel="label" 
-        [dropdown]="true" 
-        />
-
-
-        <!-- Button -->
-        <p-button label="Save" icon="pi pi-check" iconPos="right" (onClick)="sayHello()" />
-
+      <p-button label="Save" icon="pi pi-check" iconPos="right" (onClick)="sayHello()"></p-button>
     </div>
-    </p-card>
+  </p-card>
 </div>
-

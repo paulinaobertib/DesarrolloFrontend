@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-primeng-display',
+  standalone: true,
   imports: [
     CommonModule,
     ButtonModule,
@@ -21,19 +22,16 @@ import { FormsModule } from '@angular/forms';
 })
 export class PrimengDisplay implements OnInit {
   selectedItem: any;
-
   filteredItems: any[] = [];
-
-  items: any[] | undefined;
+  items: any[] = [];
 
   filterItems(event: AutoCompleteCompleteEvent) {
-    //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
-    let filtered: any[] = [];
-    let query = event.query;
+    const filtered: any[] = [];
+    const query = event.query?.toLowerCase() ?? '';
 
-    for (let i = 0; i < (this.items as any[]).length; i++) {
-      let item = (this.items as any[])[i];
-      if (item.label.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+    for (let i = 0; i < this.items.length; i++) {
+      const item = this.items[i];
+      if (item.label.toLowerCase().startsWith(query)) {
         filtered.push(item);
       }
     }
@@ -42,13 +40,12 @@ export class PrimengDisplay implements OnInit {
   }
 
   ngOnInit() {
-    this.items = [];
     for (let i = 0; i < 10000; i++) {
       this.items.push({ label: 'Item ' + i, value: 'Item ' + i });
     }
   }
 
   sayHello() {
-    alert('Hello from PrimeNG! 🎉');
+    alert('Hello from PrimeNG! dYZ%');
   }
 }

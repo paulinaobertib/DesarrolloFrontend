@@ -1,59 +1,63 @@
-# AngularUCC
+# 🧑‍💻 Práctico 2: CV Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.2.
+## 📘 Descripción
 
-## Development server
+Segundo trabajo práctico de Desarrollo Web, que consiste en crear una **aplicación de CV en Angular**, aplicando componentes, servicios, señales, rutas, formularios y consumo de API externa.
+Realizado por **Paulina Oberti Busso** y **María Victoria Vaccarini**.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
+## 🧱 Estructura
+
 ```
+📂 Practico2_Angular_CV
+├── src/
+│ ├── app/
+│ │ ├── components/
+│ │ ├── pipes/
+│ │ ├── services/
+│ │ ├── styles/
+│ │ └── app.routes.ts
+│ └── styles.scss
+└── angular.json
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 💡 Contenido
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Componentes:**  reutilizables y comunicados con @Input() y @Output().
+- **Estado:** gestionado con servicios y señales.
+- **Renderizado condicional:** uso de @if.
+- **Renderizado repetido:** uso de @for.
+- **Rutas públicas y privadas:** mediante guards.
+- **Interceptor HTTP:** registra las solicitudes.
+- **Formulario reactivo:** con validaciones integradas.
+- **Uso de PrimeNG:** para componentes y estilos.
+- **Consumo de API externa:**
+https://api.artic.edu/api/v1/artworks
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🎨 Estilos
 
-```bash
-ng generate --help
-```
+- Componentes visuales de PrimeNG.
+- Diseño limpio y responsivo.
+- Formularios estilizados y validados.
 
-## Building
+---
 
-To build the project run:
+## ⚙️ Tecnologías
 
-```bash
-ng build
-```
+- **Angular:** framework principal.
+- **TypeScript:** tipado y lógica.
+- **PrimeNG:** librería de componentes UI.
+- **RxJS / Signals:** manejo de estado y reactividad.
+- **Reactive Forms:**  validaciones dinámicas.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## 👩‍🎓 Autoras
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+**Paulina Oberti Busso**  
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**María Victoria Vaccarini**

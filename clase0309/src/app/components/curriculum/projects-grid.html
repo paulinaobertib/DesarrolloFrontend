@@ -1,6 +1,12 @@
 <div class="experience">
   @for (p of items; track p.title) {
-    <p-card class="card {{ p.cssClass || '' }}">
+    <p-card
+      class="card {{ p.cssClass || '' }}"
+      (click)="onSelect(p)"
+      (keyup.enter)="onSelect(p)"
+      tabindex="0"
+      role="button"
+    >
       <div class="project">
         @if (p.img) {
           <img [src]="p.img" [alt]="'Imagen del proyecto ' + p.title" loading="lazy" />

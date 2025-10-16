@@ -9,8 +9,8 @@ export const authGuard: CanActivateFn = (route, state) => {
   const formContactServiceTs = inject(FormContactServiceTs);
   const router = inject(Router);
   if (!formContactServiceTs.isLoggedIn()) {
-    alert("You must be logged in to access this page.");
-    router.navigate(['/login']);
+    alert('You must be logged in to access this page.');
+    router.navigate(['/']);
     return false;
   }
   return true;

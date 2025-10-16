@@ -2,11 +2,10 @@
   <h2 id="titulo-contacto">Formulario de contacto</h2>
 
   @if (sent) {
-    <p class="success" role="status">¡Gracias! Tu mensaje fue enviado.</p>
+    <p class="success" role="status">Gracias. Tu mensaje fue enviado.</p>
   }
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-    <!-- Nombre -->
     <div class="field">
       <label for="name">Nombre</label>
       <input
@@ -22,13 +21,12 @@
       />
       @if (fieldInvalid('name')) {
         <div id="err-name" class="alert alert-error bubble" role="alert" aria-live="assertive">
-          <span class="alert-icon" aria-hidden="true">⚠️</span>
+          <span class="alert-icon" aria-hidden="true">!</span>
           <span>Debe tener entre 3 y 60 letras.</span>
         </div>
       }
     </div>
 
-    <!-- Email -->
     <div class="field">
       <label for="email">Email</label>
       <input
@@ -43,13 +41,12 @@
       />
       @if (fieldInvalid('email')) {
         <div id="err-email" class="alert alert-error bubble" role="alert" aria-live="assertive">
-          <span class="alert-icon" aria-hidden="true">⚠️</span>
-          <span>Email inválido.</span>
+          <span class="alert-icon" aria-hidden="true">!</span>
+          <span>Email invalido.</span>
         </div>
       }
     </div>
 
-    <!-- Motivo -->
     <div class="field">
       <label for="subject">Motivo</label>
       <select
@@ -66,28 +63,27 @@
       </select>
       @if (fieldInvalid('subject')) {
         <div id="err-subject" class="alert alert-error bubble" role="alert" aria-live="assertive">
-          <span class="alert-icon" aria-hidden="true">⚠️</span>
-          <span>Seleccioná un motivo.</span>
+          <span class="alert-icon" aria-hidden="true">!</span>
+          <span>Selecciona un motivo.</span>
         </div>
       }
     </div>
 
-    <!-- Mensaje -->
     <div class="field">
       <label for="message">Mensaje</label>
       <textarea
         id="message"
         rows="4"
         formControlName="message"
-        placeholder="Escribe tu mensaje aquí..."
+        placeholder="Escribe tu mensaje aqui..."
         [class.is-invalid]="fieldInvalid('message')"
         [attr.aria-invalid]="fieldInvalid('message')"
         [attr.aria-describedby]="fieldInvalid('message') ? 'err-message' : null"
       ></textarea>
       @if (fieldInvalid('message')) {
         <div id="err-message" class="alert alert-error bubble" role="alert" aria-live="assertive">
-          <span class="alert-icon" aria-hidden="true">⚠️</span>
-          <span>Mínimo 10 caracteres.</span>
+          <span class="alert-icon" aria-hidden="true">!</span>
+          <span>Minimo 10 caracteres.</span>
         </div>
       }
     </div>
