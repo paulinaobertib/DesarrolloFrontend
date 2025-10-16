@@ -11,6 +11,7 @@ Realizado por **Paulina Oberti Busso** y **María Victoria Vaccarini**.
 
 📂 **Practico2_Angular_CV**
 
+```
 ├── src/
 │ ├── app/
 │ │ ├── components/
@@ -20,7 +21,7 @@ Realizado por **Paulina Oberti Busso** y **María Victoria Vaccarini**.
 │ │ └── app.routes.ts
 │ └── styles.scss
 └── angular.json
-
+```
 
 ---
 
